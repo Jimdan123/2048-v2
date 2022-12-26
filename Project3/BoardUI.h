@@ -16,7 +16,7 @@ class BoardUI
 {
 	public:
 	int NUMBER_SPACE = 5;
-	int CELL_WIDTH = 5;
+	int CELL_WIDTH = 6;
 	int CELL_HEIGHT = 3;
 	void printTopMenu(int score, int highscore);
 	void printLineType1(int width);

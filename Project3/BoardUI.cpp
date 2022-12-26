@@ -26,6 +26,25 @@ void BoardUI::printLineType1(int width)
 	cout << '\n';
 }
 
+string alignCenter(string s, int length)
+{
+	if (s.size() >= length)
+		return s;
+	string res = "";
+	int padding = (length - s.size()) / 2;
+	for (int i = 0; i < padding; ++i)
+	{
+		res += " ";
+	}
+	res += s;
+	
+	for (int i = res.size(); i < length; ++i)
+	{
+		res += " ";
+	}
+	return res;
+}
+
 void BoardUI::printLineType2(Board *board, int i, int j)
 {
 	string formatType = "%";
@@ -38,7 +57,7 @@ void BoardUI::printLineType2(Board *board, int i, int j)
 		for (int k = 0; k < CELL_WIDTH - 2; ++k)
 			cout << " ";
 		*/
-		printf(formatType.c_str(), board->board[i][j].getNumber());
+		cout << alignCenter(to_string(board->board[i][j].getNumber()), CELL_WIDTH - 2);
 		j += 1;
 		cout << "*";
 	}
