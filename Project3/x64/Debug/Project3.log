@@ -1,0 +1,4 @@
+﻿  Manager.cpp
+c:\users\jimmy\source\repos\project3\2048\project3\manager.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\jimmy\source\repos\project3\2048\project3\manager.cpp(96): warning C4715: 'Manager::win': not all control paths return a value
+  Project3.vcxproj -> C:\Users\Jimmy\source\repos\Project3\2048\x64\Debug\2048.exe

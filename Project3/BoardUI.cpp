@@ -76,5 +76,14 @@ void BoardUI::printBoard(Board *board)
 
 void BoardUI::printMenu()
 {
-	cout << "Menu" << '\n';
+	cout << "1. Menu" << '\n';
+	cout << "2. LeaderBoard" << '\n';
+}
+
+void BoardUI::printLeaderBoard(int *a, int n)
+{
+	for (int i = 1; i <= n; i++)
+	{
+		cout << i << '.' << a[i] << '\n';
+	}
 }

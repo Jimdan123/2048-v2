@@ -6,6 +6,7 @@ Manager::Manager()
 
 void Manager::start()
 {
+	board->updateLeaderBoard();
 	board->resetBoard();
 	randomizer();
 	board->print();
@@ -51,6 +52,15 @@ void Manager::move()
 			case 'a':
 				flag = board->canMoveLeft();
 				board->moveLeft();
+				break;
+			case 'f':
+				playAgain();
+				flag = false;
+				break;
+			case '2':
+				system("cls");
+				board->printLeaderBoard();
+				flag = false;
 				break;
 			default:
 				flag = false;

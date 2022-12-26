@@ -23,4 +23,5 @@ class BoardUI
 	void printLineType2(Board * board, int i, int j);
 	void printBoard(Board *board);
 	void printMenu();
+	void printLeaderBoard(int *a, int n);
 };

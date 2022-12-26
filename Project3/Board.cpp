@@ -4,6 +4,8 @@
 using namespace std;
 Board::Board(int n, int m)
 {
+	listHighScore = new int[SIZELIST_SCORE + 1];
+	resetArray(listHighScore, SIZELIST_SCORE + 1);
 	boardUI = new BoardUI();
 	row = n;
 	column = m;
@@ -16,6 +18,7 @@ Board::Board(int n, int m)
 }
 void Board::resetBoard()
 {
+	score = 0;
 	for (int i = 0; i < row; i++)
 	{
 		for (int j = 0; j < column; j++)
@@ -23,6 +26,25 @@ void Board::resetBoard()
 			board[i][j].setNumber(0);
 		}
 	}
+}
+void Board::insert(int number, int index)
+{
+	int storeTMP = 0;
+	storeTMP = listHighScore[index];
+	listHighScore[index] = number;
+	for (int i = index + 1; i <= SIZELIST_SCORE; i++)
+	{
+		number = listHighScore[i];
+		listHighScore[i] = storeTMP; 
+		storeTMP = number;
+	}
+	/*
+	for (int i = SIZELIST_SCORE - 1; i > index; --i)
+	{
+		listHighScore[i] = listHighScore[i - 1];
+	}
+	listHighScore[index] = number;
+	*/
 }
 void Board::setNumber(int row, int column, int number)
 {
@@ -131,6 +153,17 @@ bool Board::canMoveLeft()
 	}
 	return false;
 }
+void Board::printLeaderBoard()
+{
+	boardUI->printLeaderBoard(listHighScore, SIZELIST_SCORE);
+}
+void Board::resetArray(int * a, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		a[i] = 0;
+	}
+}
 Board::~Board()
 {
 	for (int i = 0; i < row; i++)
@@ -221,6 +254,8 @@ void Board::moveDown()
 						if (i != dayXaHoi)
 						{
 							board[dayXaHoi][j].number += board[i][j].number;
+							score += board[dayXaHoi][j].number;
+							calScore();
 							board[i][j].number = 0;
 							--dayXaHoi;
 						}
@@ -264,10 +299,33 @@ void Board::moveRight()
 	}
 }
 
+void Board::calScore()
+{
+	if (highscore < score)
+		highscore = score;
+}
+void Board::updateLeaderBoard()
+{
+	for (int i = 1; i <= SIZELIST_SCORE; i++)
+	{
+			if (listHighScore[i] > score)
+			{
+				continue;
+			}
+			else
+			{
+				insert(score, i);
+				break;
+			}
+		}
+}
+
+
+
 void Board::print()
 {
 	system("cls");
-	boardUI->printTopMenu(0,0);
+	boardUI->printTopMenu(score,highscore);
 	boardUI->printBoard(this);
 	boardUI->printMenu();
 }
