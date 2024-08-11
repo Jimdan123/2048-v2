@@ -1,4 +1,4 @@
-#include "Board.h"
+﻿#include "Board.h"
 #include "BoardUI.h"
 #include <stdlib.h>
 using namespace std;
@@ -240,16 +240,16 @@ void Board::moveDown()
 		int dayXaHoi = row - 1;
 		for (int i = row - 1; i >= 0; --i)
 		{
-			if (board[i][j].number != 0)
+			if (board[i][j].number != 0)// ở trên có biến
 			{
-				if (board[dayXaHoi][j].number == 0)
+				if (board[dayXaHoi][j].number == 0) //day ko co biến
 				{
 					board[dayXaHoi][j] = board[i][j];
 					board[i][j].number = 0;
 				}
 				else
 				{
-					if (board[i][j].number == board[dayXaHoi][j].number)
+					if (board[i][j].number == board[dayXaHoi][j].number)// giong nhau quat
 					{
 						if (i != dayXaHoi)
 						{
@@ -260,7 +260,7 @@ void Board::moveDown()
 							--dayXaHoi;
 						}
 					}
-					else
+					else // ko giong nhau de len dau
 					{
 						--dayXaHoi;
 						board[dayXaHoi][j] = board[i][j];
@@ -319,9 +319,6 @@ void Board::updateLeaderBoard()
 			}
 		}
 }
-
-
-
 void Board::print()
 {
 	system("cls");
